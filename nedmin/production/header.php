@@ -38,6 +38,8 @@ $ayarcek=$ayarsor->fetch(PDO::FETCH_ASSOC);
     <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
     <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 
+  <script src="https://cdn.ckeditor.com/4.7.1/standard/ckeditor.js"></script>
+
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
   </head>
@@ -74,6 +76,7 @@ $ayarcek=$ayarsor->fetch(PDO::FETCH_ASSOC);
                 <ul class="nav side-menu">
 
                   <li><a href="index.php"><i class="fa fa-home"></i> Anasayfa </a></li>
+                  <li><a href="hakkimizda.php"><i class="fa fa-info"></i> Hakkımızda </a></li>
 
                   <li><a><i class="fa fa-cogs"></i> Ayarlar <span class="fa fa-cogs"></span></a>
                     <ul class="nav child_menu">

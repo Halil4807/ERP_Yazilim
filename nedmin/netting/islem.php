@@ -17,7 +17,7 @@ if (isset($_POST['genelayarkaydet'])) {
 		'ayar_title'=> $_POST['ayar_title'],
 		'ayar_description'=> $_POST['ayar_description'],
 		'ayar_keywords'=> $_POST['ayar_keywords'],
-		'ayar_author'=> $_POST['ayar_author'],
+		'ayar_author'=> $_POST['ayar_author']
 		));
 
 	if($update)
@@ -65,5 +65,45 @@ if (isset($_POST['iletisimayarkaydet'])) {
 		header("Location:../production/iletisim-ayarlar.php?durum=no");
 	}
 }
+if (isset($_POST['hakkimizdakaydet'])) {
 
+	// Genel Ayar Tablosu Gğncelleme
+
+
+	/*
+
+	
+	Kopyala Yapıştır Yaparken
+
+	Tablo Adına
+	İşaret Satırlarına Dikkat et!!!!
+
+
+	*/
+	$hakkimizdakaydet=$db->prepare("UPDATE hakkimizda SET
+
+		hakkimizda_baslik=:hakkimizda_baslik,
+		hakkimizda_icerik=:hakkimizda_icerik,
+		hakkimizda_video=:hakkimizda_video,
+		hakkimizda_vizyon=:hakkimizda_vizyon,
+		hakkimizda_misyon=:hakkimizda_misyon
+		WHERE hakkimizda_id=0");
+
+	$update=$hakkimizdakaydet->execute(array(
+		'hakkimizda_baslik'=> $_POST['hakkimizda_baslik'],
+		'hakkimizda_icerik'=> $_POST['hakkimizda_icerik'],
+		'hakkimizda_video'=> $_POST['hakkimizda_video'],
+		'hakkimizda_vizyon'=> $_POST['hakkimizda_vizyon'],
+		'hakkimizda_misyon'=> $_POST['hakkimizda_misyon']
+		));
+
+	if($update)
+	{
+		header("Location:../production/hakkimizda.php?durum=ok");
+	}
+	else
+	{
+		header("Location:../production/hakkimizda.php?durum=no");
+	}
+}
 ?>

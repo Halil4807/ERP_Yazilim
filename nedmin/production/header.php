@@ -15,9 +15,22 @@ $kullanicisor=$db->prepare("SELECT * FROM kullanici WHERE kullanici_mail=:mail")
 $kullanicisor->execute(array(
   'mail' => $_SESSION['kullanici_mail']
   ));
-
+$say=$kullanicisor->rowCount();
 $kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
 
+
+if($say==0)
+{
+  header("Location:login.php?durum=izinsiz");
+  exit;
+}
+
+// 1.Yöntem (Kimlik(Session,Oturum) çalına bilir)
+/*
+if(!isset($_SESSION['kullanici_mail']))
+{
+
+}*/
 ?>
 
 <!DOCTYPE html>
@@ -58,7 +71,7 @@ $kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
           <div class="navbar nav_title" style="border: 0;">
-            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>ERP Yazılım</span></a>
           </div>
 
           <div class="clearfix"></div>
@@ -129,19 +142,12 @@ $kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
             <ul class="nav navbar-nav navbar-right">
               <li class="">
                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  <img src="images/img.jpg" alt="">John Doe
+                  <img src="images/img.jpg" alt=""><?php echo $kullanicicek['kullanici_adsoyad'] ?>
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
-                  <li><a href="javascript:;"> Profile</a></li>
-                  <li>
-                    <a href="javascript:;">
-                      <span class="badge bg-red pull-right">50%</span>
-                      <span>Settings</span>
-                    </a>
-                  </li>
-                  <li><a href="javascript:;">Help</a></li>
-                  <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                  <li><a href="javascript:;"> Profil Bilgilerim</a></li>
+                  <li><a href="logout.php"><i class="fa fa-sign-out pull-right"></i> Güvenli Çıkış</a></li>
                 </ul>
               </li>
 

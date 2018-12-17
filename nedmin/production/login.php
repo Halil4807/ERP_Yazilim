@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Joy Akademi CMS Yönetim Paneli Eğitim Sürümü </title>
+  <title>ERP Yazılım Yönetim Giriş</title>
 
   <!-- Bootstrap -->
   <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -73,17 +73,13 @@
               <br />
 
               <div>
-                <h1><i class="fa fa-paw"></i> Joy Akademi</h1>
-                <p>©2017 Joy Akademi Eğitim Sürümü</p>
+                <h1><i class="fa fa-paw"></i> ERP Yazılım</h1>
+                <p>©2018 E-Ticaret Projesi</p>
               </div>
             </div>
           </form>
-
-
-
         </section>
       </div>
-
     </div>
   </div>
 </body>

@@ -24,11 +24,11 @@ $kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
 
               <?php 
 
-              if($_GET['durum']=="ok")  {  ?>
+              if($_GET['sil']=="ok")  {  ?>
 
               <b style="color:green;">İşlem Başarılı...</b>
 
-              <?php } elseif($_GET['durum']=="no"){  ?>
+              <?php } elseif($_GET['sil']=="no"){  ?>
 
               <b style="color:red;">İşlem Başarısız...</b>
 

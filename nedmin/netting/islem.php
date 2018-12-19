@@ -29,7 +29,6 @@ if (isset($_POST['admingiris'])) {
 	}
 }
 
-
 if (isset($_POST['genelayarkaydet'])) {
 
 	// Genel Ayar Tablosu Gğncelleme
@@ -93,6 +92,7 @@ if (isset($_POST['iletisimayarkaydet'])) {
 		header("Location:../production/iletisim-ayarlar.php?durum=no");
 	}
 }
+
 if (isset($_POST['hakkimizdakaydet'])) {
 
 	// Genel Ayar Tablosu Gğncelleme
@@ -134,6 +134,7 @@ if (isset($_POST['hakkimizdakaydet'])) {
 		header("Location:../production/hakkimizda.php?durum=no");
 	}
 }
+
 if (isset($_POST['kullaniciduzenle'])) {
 
 	$kullanici_id=$_POST['kullanici_id'];
@@ -161,4 +162,18 @@ if (isset($_POST['kullaniciduzenle'])) {
 	}
 }
 
+if($_GET['kullanicisil']==ok){
+	$sil=$db->prepare("DELETE FROM kullanici WHERE kullanici_id=:id");
+
+	$kontrol=$sil->execute(array(
+		'id'=>$_GET['kullanici_id']
+		));
+
+	if($kontrol){
+		header("Location:../production/kullanici.php?sil=ok");
+	}
+	else{
+		header("Location:../production/kullanici.php?sil=no");
+	}
+}
 ?>

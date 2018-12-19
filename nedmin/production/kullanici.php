@@ -33,6 +33,14 @@ $kullanicisor->execute();
 
               <b style="color:red;">İşlem Başarısız...</b>
 
+              <?php } elseif($_GET['sil']=="ok"){  ?>
+
+              <b style="color:green;">İşlem Başarılı...</b>
+
+              <?php } elseif($_GET['sil']=="no"){  ?>
+
+              <b style="color:red;">İşlem Başarısız...</b>
+
               <?php } ?>
 
             </small></h2>
@@ -78,8 +86,10 @@ $kullanicisor->execute();
                   <td><?php echo $kullanicicek['kullanici_adsoyad'] ?></td>
                   <td><?php echo $kullanicicek['kullanici_mail'] ?></td>
                   <td><?php echo $kullanicicek['kullanici_gsm'] ?></td>
+
                   <td><center><a href="kullanici-duzenle.php?kullanici_id=<?php echo $kullanicicek['kullanici_id']; ?>"><button class="btn btn-primary btn-xs">Düzenle</button></a></center></td>
-                  <td><center><button class="btn btn-danger btn-xs">Sil</button></center></td>
+
+                  <td><center><a href="../netting/islem.php?kullanici_id=<?php echo $kullanicicek['kullanici_id'];?>&kullanicisil=ok"><button class="btn btn-danger btn-xs">Sil</button></a></center></td>
                 </tr>
 
                 <?php  }  ?>

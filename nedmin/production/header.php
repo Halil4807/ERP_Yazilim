@@ -98,6 +98,7 @@ if(!isset($_SESSION['kullanici_mail']))
 
                 <li><a href="index.php"><i class="fa fa-home"></i> Anasayfa </a></li>
                 <li><a href="hakkimizda.php"><i class="fa fa-info"></i> Hakkımızda </a></li>
+                <li><a href="kullanici.php"><i class="fa fa-user"></i> Kullanıcılar </a></li>
 
                 <li><a><i class="fa fa-cogs"></i> Ayarlar <span class="fa fa-cogs"></span></a>
                   <ul class="nav child_menu">

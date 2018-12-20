@@ -80,7 +80,7 @@ $ayarcek=$ayarsor->fetch(PDO::FETCH_ASSOC);
 										<p>
 											Yeni Kullanıcı mısınız? Alışverişe başlamak için hemen kayıt olmalısın!
 										</p>
-										<button class="btn btn-default btn-yellow">Kayıt Ol</button>
+										<a href="register.php"><button class="btn btn-default btn-yellow">Kayıt Ol</button></a>
 									</div>
 								</div>
 							</div>

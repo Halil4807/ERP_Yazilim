@@ -11,13 +11,15 @@ if(isset($_POST['kullanicikaydet'])){
 	//şifre kırma yöntemlerine karşı koruma sağlıyor
 	$kullanici_adsoyad=htmlspecialchars($_POST['kullanici_adsoyad']);
 	$kullanici_mail=htmlspecialchars($_POST['kullanici_mail']);
+	$kullanici_tc=htmlspecialchars($_POST['kullanici_tc']);
 
 	$kullanici_passwordone=htmlspecialchars($_POST['kullanici_passwordone']);
 	$kullanici_passwordtwo=htmlspecialchars($_POST['kullanici_passwordtwo']);
 
-	$kullanicisor=$db->prepare("select * from kullanici where kullanici_mail=:mail");
+	$kullanicisor=$db->prepare("SELECT * FROM kullanici WHERE kullanici_mail=:mail OR kullanici_tc=:tc");
 	$kullanicisor->execute(array(
-		'mail' => $kullanici_mail
+		'mail' => $kullanici_mail,
+		'tc' => htmlspecialchars($_POST['kullanici_tc'])
 		));
 	$kayittsor=$db->prepare("select * from kullanici");
 	$kayittsor->execute(array());
@@ -38,16 +40,26 @@ if(isset($_POST['kullanicikaydet'])){
 					//Kullanıcı kayıt işlemi yapılıyor...
 				$kullanicikaydet=$db->prepare("INSERT INTO kullanici SET
 					kullanici_id=:kullanici_id,
+					kullanici_tc=:kullanici_tc,
+					kullanici_gsm=:kullanici_gsm,
 					kullanici_adsoyad=:kullanici_adsoyad,
 					kullanici_mail=:kullanici_mail,
 					kullanici_password=:kullanici_password,
+					kullanici_il=:kullanici_il,
+					kullanici_ilce=:kullanici_ilce,
+					kullanici_adres=:kullanici_adres,
 					kullanici_yetki=:kullanici_yetki
 					");
 				$insert=$kullanicikaydet->execute(array(
 					'kullanici_id'=>$kayittsay,
+					'kullanici_tc'=>htmlspecialchars($_POST['kullanici_tc']),
+					'kullanici_gsm'=>htmlspecialchars($_POST['kullanici_gsm']),
 					'kullanici_adsoyad' => $kullanici_adsoyad,
 					'kullanici_mail' => $kullanici_mail,
 					'kullanici_password' => $password,
+					'kullanici_il' => htmlspecialchars($_POST['kullanici_il']),
+					'kullanici_ilce' => htmlspecialchars($_POST['kullanici_ilce']),
+					'kullanici_adres' => htmlspecialchars($_POST['kullanici_adres']),
 					'kullanici_yetki' => $kullanici_yetki
 					));
 				if ($insert) 

@@ -41,7 +41,7 @@
 				<?php } elseif ($_GET['durum']=="mukerrerkayit") {?>
 
 				<div class="alert alert-danger">
-					<strong>Hata!</strong> Bu kullanıcı daha önce kayıt edilmiş.
+					<strong>Hata!</strong> Bu kullanıcı daha önce kayıt edilmiş (TC veya Mail Adresi).
 				</div>
 				
 				<?php } elseif ($_GET['durum']=="basarisiz") {?>
@@ -56,13 +56,15 @@
 
 				
 
-
 				<div class="form-group dob">
 					<div class="col-sm-12">
-						
+						<input type="text" class="form-control"  required="" name="kullanici_tc" placeholder="TC Kimlik Numaranızı Giriniz...">
+					</div>
+				</div>
+				<div class="form-group dob">
+					<div class="col-sm-12">
 						<input type="text" class="form-control"  required="" name="kullanici_adsoyad" placeholder="Ad ve Soyadınızı Giriniz...">
 					</div>
-					
 				</div>
 				<div class="form-group">
 					<div class="col-sm-12">
@@ -77,6 +79,27 @@
 						<input type="password" class="form-control" name="kullanici_passwordtwo"   placeholder="Şifrenizi Tekrar Giriniz...">
 					</div>
 				</div>
+				<div class="form-group dob">
+					<div class="col-sm-12">
+						<input type="text" class="form-control"  required="" name="kullanici_gsm" placeholder="Telefon Numaranızı Giriniz...">
+					</div>
+				</div>
+				<div class="form-group dob">
+					<div class="col-sm-12">
+						<input type="text" class="form-control"  required="" name="kullanici_il" placeholder="Yaşadığınız İli Giriniz...">
+					</div>
+				</div>
+				<div class="form-group dob">
+					<div class="col-sm-12">
+						<input type="text" class="form-control"  required="" name="kullanici_ilce" placeholder="Yaşadığınız İlçeyi Giriniz...">
+					</div>
+				</div>
+				<div class="form-group dob">
+					<div class="col-sm-12">
+					<textarea rows="10" cols="69%" required="" name="kullanici_adres" placeholder="Açık Adresinizi Giriniz..."></textarea>
+						
+					</div>
+				</div>
 
 
 
@@ -86,8 +109,6 @@
 				<div class="title-bg">
 					<div class="title">Şifrenizi mi Unuttunuz?</div>
 				</div>
-
-
 				<center><img width="400" src="http://www.emrahyuksel.com.tr/dimg/sifremi-unuttum.jpg"></center>
 			</div>
 		</div>

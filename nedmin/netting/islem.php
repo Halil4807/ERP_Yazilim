@@ -100,7 +100,7 @@ if (isset($_POST['admingiris'])) {
 		'yetki' => 5
 		));
 
-	echo $say=$kullanicisor->rowCount();
+	$say=$kullanicisor->rowCount();
 
 	if ($say==1) {
 
@@ -110,6 +110,33 @@ if (isset($_POST['admingiris'])) {
 	} else {
 
 		header("Location:../production/login.php?durum=no");
+		exit;
+	}
+}
+
+if (isset($_POST['kullanicigiris'])) {
+
+	$kullanici_mail=htmlspecialchars($_POST['kullanici_mail']);
+	$kullanici_password=md5($_POST['kullanici_password']);
+
+	$kullanicisor=$db->prepare("SELECT * FROM kullanici where kullanici_mail=:mail and kullanici_password=:password and kullanici_yetki=:yetki and kullanici_durum=:durum");
+	$kullanicisor->execute(array(
+		'mail' => $kullanici_mail,
+		'password' => $kullanici_password,
+		'yetki' => 1,
+		'durum' => 1
+		));
+
+	$say=$kullanicisor->rowCount();
+
+	if ($say==1) {
+
+		$_SESSION['userkullanici_mail']=$kullanici_mail;
+		header("Location:../../");
+		exit;
+	} else {
+
+		header("Location:../../?durum=basarisizgiris");
 		exit;
 	}
 }
@@ -225,14 +252,11 @@ if (isset($_POST['kullaniciduzenle'])) {
 	$kullanici_id=$_POST['kullanici_id'];
 
 	$ayarkaydet=$db->prepare("UPDATE kullanici SET
-
-		kullanici_tc=:kullanici_tc,
 		kullanici_adsoyad=:kullanici_adsoyad,
 		kullanici_durum=:kullanici_durum
 		WHERE kullanici_id={$_POST['kullanici_id']}");
 
 	$update=$ayarkaydet->execute(array(
-		'kullanici_tc'=> $_POST['kullanici_tc'],
 		'kullanici_adsoyad'=> $_POST['kullanici_adsoyad'],
 		'kullanici_durum'=> $_POST['kullanici_durum']
 		));
@@ -245,6 +269,60 @@ if (isset($_POST['kullaniciduzenle'])) {
 	{
 		header("Location:../production/kullanici-duzenle.php?kullanici_id=$kullanici_id&durum=no");
 	}
+}
+
+if (isset($_POST['userkullaniciguncelle'])) {
+
+	$userkullanici_passwordone=htmlspecialchars($_POST['kullanici_passwordone']);
+	$userkullanici_passwordtwo=htmlspecialchars($_POST['kullanici_passwordtwo']);
+	$userkullanici_mail=htmlspecialchars($_POST['kullanici_mail']);
+	$userkullanici_gsm=htmlspecialchars($_POST['kullanici_gsm']);
+	$userkullanici_il=htmlspecialchars($_POST['kullanici_il']);
+	$userkullanici_ilce=htmlspecialchars($_POST['kullanici_ilce']);
+	$userkullanici_adres=htmlspecialchars($_POST['kullanici_adres']);
+
+	if($userkullanici_passwordone==$userkullanici_passwordtwo)
+	{
+		if($userkullanici_passwordone>=6)
+		{
+					//md5 fonksiyonu şifreyi md5 şifreli hale getirir.
+			$userpassword=md5($userkullanici_passwordone);
+
+			$userayarkaydet=$db->prepare("UPDATE kullanici SET
+				kullanici_gsm=:kullanici_gsm,
+				kullanici_password=:kullanici_password,
+				kullanici_il=:kullanici_il,
+				kullanici_ilce=:kullanici_ilce,
+				kullanici_adres=:kullanici_adres
+				WHERE kullanici_id={$_POST['kullanici_id']}");
+
+			$update=$userayarkaydet->execute(array(
+				'kullanici_gsm'=> $userkullanici_gsm,
+				'kullanici_password'=> $userpassword,
+				'kullanici_il'=> $userkullanici_il,
+				'kullanici_ilce'=> $userkullanici_ilce,
+				'kullanici_adres'=> $userkullanici_adres
+				));
+
+			if($update)
+			{
+				header("Location:../../hesabim.php?&durum=ok");
+			}
+			else
+			{
+				header("Location:../../hesabim.php?&durum=no");
+			}
+		}
+		else
+		{
+			header("Location:../../hesabim.php?durum=eksiksifre");
+		}
+	}
+	else
+	{
+		header("Location:../../hesabim.php?durum=farklisifre");
+	}
+	
 }
 
 if($_GET['kullanicisil']==ok){
@@ -261,7 +339,5 @@ if($_GET['kullanicisil']==ok){
 		header("Location:../production/kullanici.php?sil=no");
 	}
 }
-
-
 
 ?>

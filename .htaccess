@@ -10,7 +10,7 @@ RewriteEngine on
 #Seo url oluşturma
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^(.*)$ $1.php
+RewriteRule ^(.*)$ $1.php 
 
 #404 hata sayfası yönlendirme kodu
 #ErrorDocument 404 http://www.joyakademi.com

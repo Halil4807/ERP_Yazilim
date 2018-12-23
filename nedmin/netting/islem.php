@@ -416,6 +416,22 @@ if ($_GET['kategorisil']=="ok") {
 
 }
 
+if ($_GET['urunsil']=="ok") {
+	
+	$sil=$db->prepare("DELETE from urun where urun_id=:urun_id");
+	$kontrol=$sil->execute(array(
+		'urun_id' => $_GET['urun_id']
+		));
 
+	if ($kontrol) {
+
+		Header("Location:../production/urun.php?durum=ok");
+
+	} else {
+
+		Header("Location:../production/urun.php?durum=no");
+	}
+
+}
 
 ?>

@@ -16,6 +16,7 @@ RewriteRule ^(.*)$ $1.php
 #ErrorDocument 404 http://www.joyakademi.com
 
 
+RewriteRule ^kategori-([0-9a-zA-Z-_]+)  kategoriler.php?sef=$1 [L,QSA]
 
 
 

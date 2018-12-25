@@ -2,11 +2,28 @@
 
 include 'header.php'; 
 
+if(isset($_GET['sef']))
+{
 
+	$kategorisor=$db->prepare("SELECT * FROM kategori WHERE kategori_seourl=:seourl");
+	$kategorisor->execute(array(
+		'seourl' => $_GET['sef']
+		));
 
-$urunsor=$db->prepare("SELECT * FROM urun order by urun_id DESC");
-$urunsor->execute();
+	$kategoricek=$kategorisor->fetch(PDO::FETCH_ASSOC);
+	$kategori_id=$kategoricek['kategori_id'];
+	$urunsor=$db->prepare("SELECT * FROM urun WHERE kategori_id=:kategori_id ORDER BY urun_id DESC");
+	$urunsor->execute(array(
+		'kategori_id'=>$kategori_id
+		));
+	$say=$urunsor->rowCount();
+}
 
+else
+{
+	$urunsor=$db->prepare("SELECT * FROM urun ORDER BY urun_id DESC");
+	$urunsor->execute();
+}
 
 ?>
 
@@ -22,7 +39,14 @@ $urunsor->execute();
 				</div>
 			</div>
 			<div class="row prdct"><!--Products-->
-			<?php while($uruncek=$urunsor->fetch(PDO::FETCH_ASSOC)) {?>
+			
+				<?php 
+
+				if ($say==0) {
+					echo "Bu kategoride ürün bulunamadı";
+				}
+
+				while($uruncek=$urunsor->fetch(PDO::FETCH_ASSOC)) {?>
 				<div class="col-md-4">
 					<div class="productwrap">
 						<div class="pr-img">

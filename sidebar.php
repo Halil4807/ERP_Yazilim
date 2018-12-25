@@ -9,9 +9,9 @@
 
 			$kategorisor=$db->prepare("SELECT * FROM kategori ORDER BY kategori_sira ASC");
 			$kategorisor->execute();
-			while($kategoricek=$kategorisor->fetch(PDO::FETCH_ASSOC)) { ?> 
+			while($kategoricek=$kategorisor->fetch(PDO::FETCH_ASSOC)) { ?>
+			 <li><a href="kategori-<?=seo($kategoricek["kategori_ad"]) ?>"><?php echo $kategoricek['kategori_ad'] ?></a></li>
 
-			<li><a href="category.htm"><?php echo $kategoricek['kategori_ad'] ?></a></li>
 			<?php } ?>
 					</ul>
 				</div>

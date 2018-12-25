@@ -5,12 +5,19 @@
 				
 				<div class="categorybox">
 					<ul>
-						<li><a href="category.htm">Women Accessories</a></li>
+						<?php 
+
+			$kategorisor=$db->prepare("SELECT * FROM kategori ORDER BY kategori_sira ASC");
+			$kategorisor->execute();
+			while($kategoricek=$kategorisor->fetch(PDO::FETCH_ASSOC)) { ?> 
+
+			<li><a href="category.htm"><?php echo $kategoricek['kategori_ad'] ?></a></li>
+			<?php } ?>
 					</ul>
 				</div>
 				
 				<div class="ads">
-					<a href="product.htm"><img src="images\ads.png" class="img-responsive" alt=""></a>
+					<a href="product.htm"><img src="images\demo-img.jpg" class="img-responsive" alt=""></a>
 				</div>
 				
 				<div class="title-bg">

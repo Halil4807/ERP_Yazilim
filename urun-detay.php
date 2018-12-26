@@ -152,42 +152,41 @@ $kategoricek=$kategorisor->fetch(PDO::FETCH_ASSOC);
 			<div class="title">Related Product</div>
 		</div>
 		<div class="row prdct"><!--Products-->
-			<div class="col-md-4">
-				<div class="productwrap">
-					<div class="pr-img">
-						<div class="hot"></div>
-						<a href="product.htm"><img src="images\sample-4.jpg" alt="" class="img-responsive"></a>
-						<div class="pricetag on-sale"><div class="inner on-sale"><span class="onsale"><span class="oldprice">$314</span>$199</span></div></div>
+
+			<?php 
+			$kategori_id=$uruncek['kategori_id'];
+			$urunaltsor=$db->prepare("SELECT * FROM urun WHERE kategori_id=:kategori_id ORDER BY rand() limit 3");
+			$urunaltsor->execute(array(
+				'kategori_id'=>$kategori_id
+				));
+
+				while($urunaltcek=$urunaltsor->fetch(PDO::FETCH_ASSOC)) {?>
+				<div class="col-md-4">
+					<div class="productwrap">
+						<div class="pr-img">
+							<div class="new"></div>
+						<a href="urun-<?=seo($urunaltcek["urun_ad"]).'-'.$urunaltcek["urun_id"] ?>"><img src="images\sample-3.jpg" alt="" class="img-responsive"></a>
+
+						<div class="pricetag on-sale">
+							<div class="inner on-sale">
+								<span class="onsale">
+									<span class="oldprice"><?php echo $urunaltcek['urun_fiyat']*1.5 ?>₺</span>
+									<?php echo $urunaltcek['urun_fiyat']*1 ?>₺</span>
+								</div>
+							</div>
+						</div>
+						<span class="smalltitle"><a href="product.htm"><?php echo $urunaltcek['urun_ad'] ?></a></span>
+						<span class="smalldesc">Item no.: <?php echo $urunaltcek['urun_id'] ?></span>
 					</div>
-					<span class="smalltitle"><a href="product.htm">Lens</a></span>
-					<span class="smalldesc">Item no.: 1000</span>
 				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="productwrap">
-					<div class="pr-img">
-						<div class="new"></div>
-						<a href="product.htm"><img src="images\sample-2.jpg" alt="" class="img-responsive"></a>
-						<div class="pricetag blue"><div class="inner">$199</div></div>
-					</div>
-					<span class="smalltitle"><a href="product.htm">Black Shoes</a></span>
-					<span class="smalldesc">Item no.: 1000</span>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="productwrap">
-					<div class="pr-img">
-						<a href="product.htm"><img src="images\sample-1.jpg" alt="" class="img-responsive"></a>
-						<div class="pricetag"><div class="inner">$199</div></div>
-					</div>
-					<span class="smalltitle"><a href="product.htm">Nikon Camera</a></span>
-					<span class="smalldesc">Item no.: 1000</span>
-				</div>
-			</div>
-		</div><!--Products-->
-		<div class="spacer"></div>
-	</div><!--Main content-->
-	<?php include 'sidebar.php'; ?>
-</div>
+
+				<?php } ?>
+
+
+			</div><!--Products-->
+			<div class="spacer"></div>
+		</div><!--Main content-->
+		<?php include 'sidebar.php'; ?>
+	</div>
 </div>
 <?php include 'footer.php'; ?>

@@ -39,20 +39,26 @@ else
 				</div>
 			</div>
 			<div class="row prdct"><!--Products-->
-			
-				<?php 
 
-				if ($say==0) {
-					echo "Bu kategoride ürün bulunamadı";
-				}
+				<?php 
 
 				while($uruncek=$urunsor->fetch(PDO::FETCH_ASSOC)) {?>
 				<div class="col-md-4">
 					<div class="productwrap">
 						<div class="pr-img">
 							<div class="new"></div>
-							<a href="product.htm"><img src="images\sample-3.jpg" alt="" class="img-responsive"></a>
-							<div class="pricetag on-sale"><div class="inner on-sale"><span class="onsale"><span class="oldprice"><?php echo $uruncek['urun_fiyat']*1.5 ?>₺</span><?php echo $uruncek['urun_fiyat']*1 ?>₺</span></div></div>
+							<!--
+							<a href="urun-<?=seo($uruncek["urun_ad"]) ?>"><img src="images\sample-3.jpg" alt="" class="img-responsive"></a>
+						-->
+						<a href="urun-<?=seo($uruncek["urun_ad"]).'-'.$uruncek["urun_id"] ?>"><img src="images\sample-3.jpg" alt="" class="img-responsive"></a>
+
+						<div class="pricetag on-sale">
+							<div class="inner on-sale">
+								<span class="onsale">
+									<span class="oldprice"><?php echo $uruncek['urun_fiyat']*1.5 ?>₺</span>
+									<?php echo $uruncek['urun_fiyat']*1 ?>₺</span>
+								</div>
+							</div>
 						</div>
 						<span class="smalltitle"><a href="product.htm"><?php echo $uruncek['urun_ad'] ?></a></span>
 						<span class="smalldesc">Item no.: <?php echo $uruncek['urun_id'] ?></span>

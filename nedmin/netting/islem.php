@@ -341,6 +341,21 @@ if($_GET['kullanicisil']==ok){
 	}
 }
 
+if($_GET['yorumsil']==ok){
+	$sil=$db->prepare("DELETE FROM yorumlar WHERE yorum_id=:id");
+
+	$kontrol=$sil->execute(array(
+		'id'=>$_GET['yorum_id']
+		));
+
+	if($kontrol){
+		header("Location:../production/yorum.php?sil=ok");
+	}
+	else{
+		header("Location:../production/yorum.php?sil=no");
+	}
+}
+
 if (isset($_POST['kategoriduzenle'])) {
 
 	$kategori_id=$_POST['kategori_id'];
@@ -395,7 +410,6 @@ if (isset($_POST['kategoriekle'])) {
 
 		Header("Location:../production/kategori.php?durum=no");
 	}
-
 }
 
 if ($_GET['kategorisil']=="ok") {
@@ -413,7 +427,6 @@ if ($_GET['kategorisil']=="ok") {
 
 		Header("Location:../production/kategori.php?durum=no");
 	}
-
 }
 
 if ($_GET['urunsil']=="ok") {
@@ -431,10 +444,7 @@ if ($_GET['urunsil']=="ok") {
 
 		Header("Location:../production/urun.php?durum=no");
 	}
-
 }
-
-
 
 if (isset($_POST['urunekle'])) {
 
@@ -461,7 +471,7 @@ if (isset($_POST['urunekle'])) {
 		'urun_durum' => $_POST['urun_durum'],
 		'urun_stok' => $_POST['urun_stok'],
 		'seourl' => $urun_seourl
-			
+
 		));
 
 	if ($insert) {
@@ -472,7 +482,6 @@ if (isset($_POST['urunekle'])) {
 
 		Header("Location:../production/urun.php?durum=no");
 	}
-
 }
 
 if (isset($_POST['urunduzenle'])) {
@@ -488,6 +497,7 @@ if (isset($_POST['urunduzenle'])) {
 		urun_video=:urun_video,
 		urun_keyword=:urun_keyword,
 		urun_durum=:urun_durum,
+		urun_onecikar=:urun_onecikar,
 		urun_stok=:urun_stok,	
 		urun_seourl=:seourl		
 		WHERE urun_id={$_POST['urun_id']}");
@@ -499,9 +509,10 @@ if (isset($_POST['urunduzenle'])) {
 		'urun_video' => $_POST['urun_video'],
 		'urun_keyword' => $_POST['urun_keyword'],
 		'urun_durum' => $_POST['urun_durum'],
+		'urun_onecikar' => $_POST['urun_onecikar'],
 		'urun_stok' => $_POST['urun_stok'],
 		'seourl' => $urun_seourl
-			
+
 		));
 
 	if ($update) {
@@ -512,7 +523,53 @@ if (isset($_POST['urunduzenle'])) {
 
 		Header("Location:../production/urun-duzenle.php?durum=no&urun_id=$urun_id");
 	}
-
 }
 
+if (isset($_POST['yorumekle'])) {
+	$gelenurl=$_POST['gelenurl'];
+	$kaydet=$db->prepare("INSERT INTO yorumlar SET
+		urun_id=:urun_id,
+		kullanici_id=:kullanici_id,
+		yorum_detay=:yorum_detay
+		");
+	$insert=$kaydet->execute(array(
+		'urun_id' => $_POST['urun_id'],
+		'kullanici_id' => $_POST['kullanici_id'],
+		'yorum_detay' => $_POST['yorum_detay']
+
+		));
+
+	if ($insert) {
+
+		Header("Location:$gelenurl?durum=ok");
+
+	} else {
+
+		Header("Location:$gelenurl?durum=no");
+	}
+}
+
+if (isset($_POST['sepeteekle'])) {
+	$sepetekle=$db->prepare("INSERT INTO sepet SET
+		urun_id=:urun_id,
+		kullanici_id=:kullanici_id,
+		urun_adet=:urun_adet
+		");
+
+	$insert=$sepetekle->execute(array(
+		'urun_id' => $_POST['urun_id'],
+		'kullanici_id' => $_POST['kullanici_id'],
+		'urun_adet' => $_POST['urun_adet']
+		));
+
+	if ($insert) {
+
+		Header("Location:../../sepet?durum=ok");
+
+	} else {
+
+		Header("Location:../../sepet?durum=no");
+	}
+
+}
 ?>

@@ -46,13 +46,13 @@ $kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
   <link rel="stylesheet" type="text/css" href="js\product\jquery.fancybox.css?v=2.1.5" media="screen">
 
 
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
-    </head>
+   
     <body>
      <div id="wrapper">
       <div class="header"><!--Header -->
@@ -155,60 +155,74 @@ $kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
    </div>
    <div class="navbar-collapse collapse">
     <ul class="nav navbar-nav">
-    <li><a href="index.php" class="active">Ana Sayfa</a><div class="curve"></div></li>
-    <li class="dropdown"></li>
+      <li><a href="index.php" class="active">Ana Sayfa</a><div class="curve"></div></li>
+      <li class="dropdown"></li>
 
-    <li><a href="kategoriler.php">Kategoriler</a></li>
-    <li><a href="hakkimizda.php">Hakkımızda</a></li>
-    <li><a href="iletisim.php">İletişim</a></li>
-  </ul>
+      <li><a href="kategoriler.php">Kategoriler</a></li>
+      <li><a href="hakkimizda.php">Hakkımızda</a></li>
+      <li><a href="iletisim.php">İletişim</a></li>
+    </ul>
+  </div>
 </div>
-</div>
+<?php
+$sepetsor=$db->prepare("SELECT * FROM sepet WHERE kullanici_id=:id");
+$sepetsor->execute(array(
+  'id' => $kullanicicek['kullanici_id']
+  ));
+
+while($sepetcek=$sepetsor->fetch(PDO::FETCH_ASSOC))
+{
+  $urunsepet_id=$sepetcek['urun_id'];
+  $urunsepetsor=$db->prepare("SELECT * FROM urun WHERE urun_id=:id");
+  $urunsepetsor->execute(array(
+    'id' => $urunsepet_id
+    ));
+  $urunsepetcek=$urunsepetsor->fetch(PDO::FETCH_ASSOC);
+  $toplamcartust_fiyat+=$urunsepetcek['urun_fiyat']*$sepetcek['urun_adet'];
+} ?>
 <div class="col-md-2 machart">
- <button id="popcart" class="btn btn-default btn-chart btn-sm "><span class="mychart">Cart</span>|<span class="allprice">$0.00</span></button>
+ <button id="popcart" class="btn btn-default btn-chart btn-sm "><span class="mychart">Alışveriş Sepeti</span>|<span class="allprice"><?php echo $toplamcartust_fiyat ?> ₺</span></button>
  <div class="popcart">
   <table class="table table-condensed popcart-inner">
    <tbody>
+
+    <?php
+    $sepetsor=$db->prepare("SELECT * FROM sepet WHERE kullanici_id=:id");
+    $sepetsor->execute(array(
+      'id' => $kullanicicek['kullanici_id']
+      ));
+
+    while($sepetcek=$sepetsor->fetch(PDO::FETCH_ASSOC))
+    {
+      $urunsepet_id=$sepetcek['urun_id'];
+      $urunsepetsor=$db->prepare("SELECT * FROM urun WHERE urun_id=:id");
+      $urunsepetsor->execute(array(
+        'id' => $urunsepet_id
+        ));
+      $urunsepetcek=$urunsepetsor->fetch(PDO::FETCH_ASSOC);
+      $toplamcartalt_fiyat+=$urunsepetcek['urun_fiyat']*$sepetcek['urun_adet'];
+      ?>
+      <tr>
+       <td>
+        <img src="images\dummy-1.png" alt="" class="img-responsive">
+      </td>
+      <td><?php echo $urunsepetcek['urun_ad'] ?><br></td>
+      <td><?php echo $sepetcek['urun_adet']*1 ?>X</td>
+      <td><?php echo $urunsepetcek['urun_fiyat']*1 ?>₺</td>
+    </tr>
     <tr>
-     <td>
-      <a href="product.htm"><img src="images\dummy-1.png" alt="" class="img-responsive"></a>
-    </td>
-    <td><a href="product.htm">Casio Exilim Zoom</a><br><span>Color: green</span></td>
-    <td>1X</td>
-    <td>$138.80</td>
-    <td><a href=""><i class="fa fa-times-circle fa-2x"></i></a></td>
-  </tr>
-  <tr>
-   <td>
-    <a href="product.htm"><img src="images\dummy-1.png" alt="" class="img-responsive"></a>
-  </td>
-  <td><a href="product.htm">Casio Exilim Zoom</a><br><span>Color: green</span></td>
-  <td>1X</td>
-  <td>$138.80</td>
-  <td><a href=""><i class="fa fa-times-circle fa-2x"></i></a></td>
-</tr>
-<tr>
- <td>
-  <a href="product.htm"><img src="images\dummy-1.png" alt="" class="img-responsive"></a>
-</td>
-<td><a href="product.htm">Casio Exilim Zoom</a><br><span>Color: green</span></td>
-<td>1X</td>
-<td>$138.80</td>
-<td><a href=""><i class="fa fa-times-circle fa-2x"></i></a></td>
-</tr>
-</tbody>
-</table>
-<span class="sub-tot">Sub-Total : <span>$277.60</span> | <span>Vat (17.5%)</span> : $36.00 </span>
-<br>
-<div class="btn-popcart">
- <a href="checkout.htm" class="btn btn-default btn-red btn-sm">Checkout</a>
- <a href="cart.htm" class="btn btn-default btn-red btn-sm">More</a>
-</div>
-<div class="popcart-tot">
- <p>
-  Total<br>
-  <span>$313.60</span>
-</p>
+      <?php } ?>
+    </tbody>
+  </table>
+  <br>
+  <div class="btn-popcart">
+   <a href="sepet.php" class="btn btn-default btn-red btn-sm">Sepete Git</a>
+ </div>
+ <div class="popcart-tot">
+   <p>
+    Toplam<br>
+    <span><?php echo $toplamcartalt_fiyat ?> ₺</span>
+  </p>
 </div>
 <div class="clearfix"></div>
 </div>

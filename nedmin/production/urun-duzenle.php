@@ -29,15 +29,13 @@ $uruncek=$urunsor->fetch(PDO::FETCH_ASSOC);
 
               <b style="color:green;">İşlem Başarılı...</b>
 
-              <?php } elseif ($_GET['durum']=="no") {?>
+              <?php } elseif ($_GET['durum']=="no") { ?>
 
               <b style="color:red;">İşlem Başarısız...</b>
 
               <?php }
 
               ?>
-
-
             </small></h2>
            
             <div class="clearfix"></div>
@@ -177,42 +175,19 @@ $uruncek=$urunsor->fetch(PDO::FETCH_ASSOC);
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                  <select id="heard" class="form-control" name="urun_durum" required>
-
-
-
-                   <!-- Kısa İf Kulllanımı 
-
-                    <?php echo $uruncek['urun_durum'] == '1' ? 'selected=""' : ''; ?>
-
-                  -->
-
-
-
-
                   <option value="1" <?php echo $uruncek['urun_durum'] == '1' ? 'selected=""' : ''; ?>>Aktif</option>
-
-
-
                   <option value="0" <?php if ($uruncek['urun_durum']==0) { echo 'selected=""'; } ?>>Pasif</option>
-                  <!-- <?php 
+                 </select>
+               </div>
+             </div>
 
-                   if ($uruncek['urun_durum']==0) {?>
-
-
-                   <option value="0">Pasif</option>
-                   <option value="1">Aktif</option>
-
-
-                   <?php } else {?>
-
-                   <option value="1">Aktif</option>
-                   <option value="0">Pasif</option>
-
-                   <?php  }
-
-                   ?> -->
-
-
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Ürün Durum<span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                 <select id="heard" class="form-control" name="urun_onecikar" required>
+                  <option value="1" <?php echo $uruncek['urun_onecikar'] == '1' ? 'selected=""' : ''; ?>>Evet</option>
+                  <option value="0" <?php if ($uruncek['urun_onecikar']==0) { echo 'selected=""'; } ?>>Hayır</option>
                  </select>
                </div>
              </div>

@@ -41,8 +41,13 @@ $urunsor->execute();
             <div class="clearfix"></div>
 
             <div align="right">
-              <a href="urun-ekle.php"><button class="btn btn-success btn-xs"> Yeni Ekle</button></a>
 
+
+              <!--  ÜRÜN EKLEMEYİ SEVGİNUR YAPACAK 
+                <a href="urun-ekle.php"><button class="btn btn-success btn-xs"> Yeni Ekle</button></a>
+              -->
+
+              
             </div>
           </div>
           <div class="x_content">

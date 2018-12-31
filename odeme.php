@@ -17,7 +17,19 @@ $sepetsor->execute(array(
 		</div>
 		
 		<div class="table-responsive"><br><br><br><br><br>
-			<h1 style="color:green;">ÖDEME İŞLEMİNİZ BAŞARIYLA TAMAMLANDI... </h1><br><br><br><br><br><br><br><br><br><br>
+
+			<?php 
+
+			if ($_GET['durum']=="ok") {?>
+			<h1 style="color:green;">ÖDEME İŞLEMİNİZ BAŞARIYLA TAMAMLANDI... </h1>
+			<?php } elseif ($_GET['durum']=="no") {?>
+
+			<h1 style="color:red;">ÖDEME İŞLEMİNİZ BAŞARISIZ OLDU... </h1>
+
+			<?php }
+
+			?>
+			<br><br><br><br><br><br><br><br><br><br>
 		</div>
 	</div>
 	<?php include 'footer.php'; ?>

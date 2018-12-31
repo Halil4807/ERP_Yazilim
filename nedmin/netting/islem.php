@@ -570,6 +570,72 @@ if (isset($_POST['sepeteekle'])) {
 
 		Header("Location:../../sepet?durum=no");
 	}
-
 }
+
+if (isset($_POST['siparisekle'])) {
+	
+	$siparistip="Ödemesi Onaylandı.";
+	$siparisekle=$db->prepare("INSERT INTO siparis SET
+		kullanici_id=:kullanici_id,
+		siparis_tip=:siparis_tip,
+		siparis_toplam=:siparis_toplam
+		");
+
+	$insert=$siparisekle->execute(array(
+		'kullanici_id' => $_POST['kullanici_id'],
+		'siparis_tip' => $siparistip,
+		'siparis_toplam' => $_POST['siparis_toplam']
+		));
+
+	if ($insert) {
+
+		$siparis_id=$db->lastInsertId();
+		
+		$urunler=$_POST['urun_id'];
+
+		foreach ($urunler as $urun ) {
+			$urunsepetsor=$db->prepare("SELECT * FROM sepet WHERE kullanici_id=:kullanici_id AND urun_id=:id");
+			$urunsepetsor->execute(array(
+				'kullanici_id' => $_POST['kullanici_id'],
+				'id' => $urun
+				));
+			$urunsepetcek=$urunsepetsor->fetch(PDO::FETCH_ASSOC);
+			$urunsor=$db->prepare("SELECT * FROM urun WHERE  urun_id=:id");
+			$urunsor->execute(array(
+				'id' => $urun
+				));
+			$uruncek=$urunsor->fetch(PDO::FETCH_ASSOC);
+			$siparisekle=$db->prepare("INSERT INTO siparis_detay SET
+				siparis_id=:siparis_id,
+				urun_id=:urun_id,
+				urun_adet=:urun_adet,
+				urun_fiyat=:urun_fiyat
+				");
+			$insert=$siparisekle->execute(array(
+				'siparis_id' => $siparis_id,
+				'urun_id' => $urun,
+				'urun_adet' => $urunsepetcek['urun_adet'],
+				'urun_fiyat' => $uruncek['urun_fiyat'],
+				));
+			$sil=$db->prepare("DELETE from sepet where sepet_id=:sepet_id");
+			$kontrol=$sil->execute(array(
+				'sepet_id' => $urunsepetcek['sepet_id']
+				));
+		}
+		if ($insert) {
+
+
+			Header("Location:../../odeme?durum=ok");
+
+		} else {
+
+			Header("Location:../../odeme?durum=no");
+		}
+
+	} else {
+
+		Header("Location:../../odeme?durum=no");
+	}
+}
+
 ?>

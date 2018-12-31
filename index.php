@@ -68,7 +68,7 @@ $urunsor->execute(array(
 						<?php 
 						$urunsor=$db->prepare("SELECT * FROM urun ORDER BY urun_id DESC limit 6");
 						$urunsor->execute();
-						while($uruncek=$urunsor->fetch(PDO::FETCH_ASSOC)) {?><br>
+						while($uruncek=$urunsor->fetch(PDO::FETCH_ASSOC)) {?>
 						<div class="col-md-4">
 							<div class="productwrap">
 								<div class="pr-img">

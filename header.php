@@ -181,7 +181,7 @@ while($sepetcek=$sepetsor->fetch(PDO::FETCH_ASSOC))
   $toplamcartust_fiyat+=$urunsepetcek['urun_fiyat']*$sepetcek['urun_adet'];
 } ?>
 <div class="col-md-2 machart">
- <button id="popcart" class="btn btn-default btn-chart btn-sm "><span class="mychart">Alışveriş Sepeti</span>|<span class="allprice"><?php echo $toplamcartust_fiyat ?> ₺</span></button>
+ <button id="popcart" class="btn btn-default btn-chart btn-sm "><span class="mychart">Alışveriş Sepeti</span>|<span class="allprice"><?php if($toplamcartust_fiyat>0){ echo $toplamcartust_fiyat;} else{echo "0";} ?> ₺</span></button>
  <div class="popcart">
   <table class="table table-condensed popcart-inner">
    <tbody>

@@ -7,8 +7,8 @@
 				<div class="page-title-inner">
 					<div class="row">
 						<div class="col-md-12">
-							<div class="bigtitle">Kullanıcı Kaydı</div>
-							<p >Kullanıcı kayıt işlemlerini aşağıda ki form aracılığı ile gerçekleştirebilirsiniz.</p>
+							<div class="bigtitle">Şifremi Unuttum!</div>
+							<p >Şifrenizi Yenilemek için Aşağıdaki bilgileri doldurun...</p>
 						</div>
 						
 					</div>
@@ -21,7 +21,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="title-bg">
-					<div class="title">Kayıt Bilgileri</div>
+					<div class="title">Şifremi Unuttum!</div>
 				</div>
 
 				<?php 
@@ -38,16 +38,16 @@
 					<strong>Hata!</strong> Şifreniz minimum 6 karakter uzunluğunda olmalıdır.
 				</div>
 				
-				<?php } elseif ($_GET['durum']=="mukerrerkayit") {?>
+				<?php } elseif ($_GET['durum']=="yanlis") {?>
 
 				<div class="alert alert-danger">
-					<strong>Hata!</strong> Bu kullanıcı daha önce kayıt edilmiş (TC veya Mail Adresi).
+					<strong>Hata!</strong> Bilgileri Eksik veya Yanlış Girdiniz.
 				</div>
 				
 				<?php } elseif ($_GET['durum']=="basarisiz") {?>
 
 				<div class="alert alert-danger">
-					<strong>Hata!</strong> Kayıt Yapılamadı Sistem Yöneticisine Danışınız.
+					<strong>Hata!</strong>  Sistem Yöneticisine Danışınız.
 				</div>
 				
 				<?php }
@@ -59,11 +59,6 @@
 				<div class="form-group dob">
 					<div class="col-sm-12">
 						<input type="text" class="form-control"  required="" name="kullanici_tc" placeholder="TC Kimlik Numaranızı Giriniz...">
-					</div>
-				</div>
-				<div class="form-group dob">
-					<div class="col-sm-12">
-						<input type="text" class="form-control"  required="" name="kullanici_adsoyad" placeholder="Ad ve Soyadınızı Giriniz...">
 					</div>
 				</div>
 				<div class="form-group">
@@ -79,37 +74,8 @@
 						<input type="password" class="form-control" name="kullanici_passwordtwo"   placeholder="Şifrenizi Tekrar Giriniz...">
 					</div>
 				</div>
-				<div class="form-group dob">
-					<div class="col-sm-12">
-						<input type="text" class="form-control"  required="" name="kullanici_gsm" placeholder="Telefon Numaranızı Giriniz...">
-					</div>
-				</div>
-				<div class="form-group dob">
-					<div class="col-sm-12">
-						<input type="text" class="form-control"  required="" name="kullanici_il" placeholder="Yaşadığınız İli Giriniz...">
-					</div>
-				</div>
-				<div class="form-group dob">
-					<div class="col-sm-12">
-						<input type="text" class="form-control"  required="" name="kullanici_ilce" placeholder="Yaşadığınız İlçeyi Giriniz...">
-					</div>
-				</div>
-				<div class="form-group dob">
-					<div class="col-sm-12">
-					<textarea rows="10" cols="69%" required="" name="kullanici_adres" placeholder="Açık Adresinizi Giriniz..."></textarea>
-						
-					</div>
-				</div>
 
-
-
-				<button type="submit" name="kullanicikaydet" class="btn btn-default btn-red">Kayıt İşlemini Yap</button>
-			</div>
-			<div class="col-md-6">
-				<div class="title-bg">
-					<div class="title">Şifrenizi mi Unuttunuz?</div>
-				</div>
-				<center><a href="sifremiunuttum.php"><img width="400" src="http://www.emrahyuksel.com.tr/dimg/sifremi-unuttum.jpg"></a></center>
+				<button type="submit" name="sifreyenile" class="btn btn-default btn-red">Şifremi Unuttum</button>
 			</div>
 		</div>
 	</div>

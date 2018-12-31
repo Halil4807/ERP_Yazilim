@@ -638,4 +638,71 @@ if (isset($_POST['siparisekle'])) {
 	}
 }
 
+if(isset($_POST['sifreyenile'])){
+
+	// htmlspecialchars fonksiyonu script gibi 
+	//şifre kırma yöntemlerine karşı koruma sağlıyor
+	$kullanici_mail=htmlspecialchars($_POST['kullanici_mail']);
+	$kullanici_tc=htmlspecialchars($_POST['kullanici_tc']);
+
+	$kullanici_passwordone=htmlspecialchars($_POST['kullanici_passwordone']);
+	$kullanici_passwordtwo=htmlspecialchars($_POST['kullanici_passwordtwo']);
+
+	$kullanicisor=$db->prepare("SELECT * FROM kullanici WHERE kullanici_mail=:mail AND kullanici_tc=:tc");
+	$kullanicisor->execute(array(
+		'mail' => $kullanici_mail,
+		'tc' => htmlspecialchars($_POST['kullanici_tc'])
+		));
+	$kayittsor=$db->prepare("select * from kullanici");
+	$kayittsor->execute(array());
+	$kayittsay=$kayittsor->rowCount();
+	//dönen satır sayısını belirtir
+	$say=$kullanicisor->rowCount();
+	$kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
+	if ($say==1) 
+	{
+		if($kullanici_passwordone==$kullanici_passwordtwo)
+		{
+			if(strlen($kullanici_passwordone)>=6)
+			{
+					//md5 fonksiyonu şifreyi md5 şifreli hale getirir.
+				$password=md5($kullanici_passwordone);
+
+				$kaydet=$db->prepare("UPDATE kullanici SET
+					kullanici_password=:kullanici_password
+					WHERE kullanici_id={$kullanicicek['kullanici_id']}");
+				$update=$kaydet->execute(array(
+					'kullanici_password' => $password
+					));
+
+
+
+				if ($update) 
+				{
+					header("Location:../../index.php?durum=basarili");
+				} 
+				else 
+				{
+					echo $_POST['kullanici_tc'];
+					echo $_POST['kullanici_mail'];
+					//header("Location:../../sifremiunuttum.php?durum=basarisiz");
+				}
+			}
+			else
+			{
+				header("Location:../../sifremiunuttum.php?&durum=eksiksifre");
+			}
+		}
+		else
+		{
+			header("Location:../../sifremiunuttum.php?durum=farklisifre");
+		}
+		
+	}
+	else 
+	{
+		header("Location:../../sifremiunuttum.php?durum=yanlis");
+	}
+}
+
 ?>

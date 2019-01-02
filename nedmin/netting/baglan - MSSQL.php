@@ -1,26 +1,5 @@
-
-
-
-
-
-
-
 <?php
 
-
-
-try {
-
-	$db=new PDO("mysql:host=localhost;dbname=erp;charset=utf8",'root','1201710208');
-
-	//echo "Veritabanı bağlantısı başarılı";
-
-} catch (PDOExpception $e) {
-
-	echo $e->getMessage();
-}
-
-/*
 //mssql connection için gerekli kodlar  
 
 $serverName = 'DESKTOP-5OKR8U9'; //mssql server name buraya gelecek.
@@ -35,5 +14,5 @@ if ($conn) {
 	echo 'Bağlantı Başarısız! <hr>';
 	die(print_r(sqlsrv_errors(), true));
 }
-*/
+
 ?>

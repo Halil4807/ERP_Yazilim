@@ -33,10 +33,6 @@ else
 		<div class="col-md-9"><!--Main content-->
 			<div class="title-bg">
 				<div class="title">Ürünler</div>
-				<div class="title-nav">
-					<a href="category.htm"><i class="fa fa-th-large"></i>grid</a>
-					<a href="category-list.htm"><i class="fa fa-bars"></i>List</a>
-				</div>
 			</div>
 			<div class="row prdct"><!--Products-->
 
@@ -50,7 +46,7 @@ else
 							<!--
 							<a href="urun-<?=seo($uruncek["urun_ad"]) ?>"><img src="images\sample-3.jpg" alt="" class="img-responsive"></a>
 						-->
-						<a href="urun-<?=seo($uruncek["urun_ad"]).'-'.$uruncek["urun_id"] ?>"><img src="images\sample-3.jpg" alt="" class="img-responsive"></a>
+						<a href="urun-<?=seo($uruncek["urun_ad"]).'-'.$uruncek["urun_id"] ?>"><img src="<?php echo $uruncek['urun_foto'] ?>" width="200" height="200" alt="" class=""></a>
 
 						<div class="pricetag on-sale">
 							<div class="inner on-sale">

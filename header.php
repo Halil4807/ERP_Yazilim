@@ -160,7 +160,6 @@ $kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
 
       <li><a href="kategoriler.php">Kategoriler</a></li>
       <li><a href="hakkimizda.php">Hakkımızda</a></li>
-      <li><a href="iletisim.php">İletişim</a></li>
     </ul>
   </div>
 </div>
@@ -204,7 +203,7 @@ while($sepetcek=$sepetsor->fetch(PDO::FETCH_ASSOC))
       ?>
       <tr>
        <td>
-        <img src="images\dummy-1.png" alt="" class="img-responsive">
+       <img src="<?php echo $urunsepetcek['urun_foto'] ?>" width="50" height="50" alt="" class="">
       </td>
       <td><?php echo $urunsepetcek['urun_ad'] ?><br></td>
       <td><?php echo $sepetcek['urun_adet']*1 ?>X</td>

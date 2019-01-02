@@ -35,7 +35,7 @@ $urunsor->execute(array(
 					<div class="productwrap">
 						<div class="pr-img">
 							<div class="hot"></div>
-							<a href="urun-<?=seo($uruncek["urun_ad"]).'-'.$uruncek["urun_id"] ?>"><img src="images\sample-3.jpg" alt="" class="img-responsive"></a>
+							<a href="urun-<?=seo($uruncek["urun_ad"]).'-'.$uruncek["urun_id"] ?>"><img src="<?php echo $uruncek['urun_foto'] ?>" width="200" height="200" alt="" class=""></a>
 
 							<div class="pricetag on-sale">
 								<div class="inner on-sale">
@@ -73,7 +73,7 @@ $urunsor->execute(array(
 							<div class="productwrap">
 								<div class="pr-img">
 									<div class="new"></div>
-									<a href="urun-<?=seo($uruncek["urun_ad"]).'-'.$uruncek["urun_id"] ?>"><img src="images\sample-3.jpg" alt="" class="img-responsive"></a>
+									<a href="urun-<?=seo($uruncek["urun_ad"]).'-'.$uruncek["urun_id"] ?>"><img src="<?php echo $uruncek['urun_foto'] ?>" width="200" height="200" alt="" class=""></a>
 
 									<div class="pricetag on-sale">
 										<div class="inner on-sale">

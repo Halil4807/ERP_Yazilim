@@ -48,16 +48,7 @@ $kategoricek=$kategorisor->fetch(PDO::FETCH_ASSOC);
 							<span class="oldprice"><?php echo $uruncek['urun_fiyat']*1.5 ?>₺</span>
 							<?php echo $uruncek['urun_fiyat']*1 ?>₺</span></div></div>
 
-							<a class="fancybox" href="images\sample-1.jpg" data-fancybox-group="gallery" title="Cras neque mi, semper leon"><img src="images\sample-1.jpg" alt="" class="img-responsive"></a>
-						</div>
-						<div class="thumb-img">
-							<a class="fancybox" href="images\sample-4.jpg" data-fancybox-group="gallery" title="Cras neque mi, semper leon"><img src="images\sample-4.jpg" alt="" class="img-responsive"></a>
-						</div>
-						<div class="thumb-img">
-							<a class="fancybox" href="images\sample-5.jpg" data-fancybox-group="gallery" title="Cras neque mi, semper leon"><img src="images\sample-5.jpg" alt="" class="img-responsive"></a>
-						</div>
-						<div class="thumb-img">
-							<a class="fancybox" href="images\sample-1.jpg" data-fancybox-group="gallery" title="Cras neque mi, semper leon"><img src="images\sample-1.jpg" alt="" class="img-responsive"></a>
+							<a class="" href="#" data-fancybox-group="gallery" title="<?php echo $uruncek['urun_ad'] ?>"><img src="<?php echo $uruncek['urun_foto'] ?>" alt="" class="img-responsive"></a>
 						</div>
 					</div>
 					<div class="col-md-6 det-desc">
@@ -196,7 +187,7 @@ $kategoricek=$kategorisor->fetch(PDO::FETCH_ASSOC);
 								<div class="productwrap">
 									<div class="pr-img">
 										<div class="new"></div>
-										<a href="urun-<?=seo($urunaltcek["urun_ad"]).'-'.$urunaltcek["urun_id"] ?>"><img src="images\sample-3.jpg" alt="" class="img-responsive"></a>
+										<a href="urun-<?=seo($urunaltcek["urun_ad"]).'-'.$urunaltcek["urun_id"] ?>"><img src="<?php echo $urunaltcek['urun_foto'] ?>" width="200" height="200" alt="" class=""></a>
 
 										<div class="pricetag on-sale">
 											<div class="inner on-sale">

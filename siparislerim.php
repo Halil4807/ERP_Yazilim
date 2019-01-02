@@ -49,7 +49,7 @@
 									<td><?php echo $sipariscek['siparis_toplam'] ?></td>
 									<td><?php echo $sipariscek['siparis_tip'] ?></td>
 
-									<td><center><a href="siparis-detay.php?siparis_id=<?php echo $sipariscek['siparis_id']; ?>"><button class="btn btn-primary btn-xs">Düzenle</button></a></center></td>
+									<td><center><a href="siparis-detay.php?siparis_id=<?php echo $sipariscek['siparis_id']; ?>"><button class="btn btn-primary btn-xs">Detay</button></a></center></td>
 								<?php } ?>
 								
 							</tr>

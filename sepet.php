@@ -45,7 +45,7 @@ $sepetsor->execute(array(
 							<input type="hidden" name="urun_id[]" value="<?php echo $urunsepetcek['urun_id']; ?>">
 							<tr>
 
-								<td><img src="images\demo-img.jpg" width="100" alt=""></td>
+								<td><img src="<?php echo $urunsepetcek['urun_foto'] ?>" width="150" height="100" alt="" class=""></td>
 								<td><?php echo $urunsepetcek['urun_ad'] ?></td>
 								<td><?php echo $urunsepetcek['urun_id'] ?></td>
 								<td><input type="text" class="form-control quantity" value="<?php echo $sepetcek['urun_adet'] ?>"></td>

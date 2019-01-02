@@ -705,4 +705,42 @@ if(isset($_POST['sifreyenile'])){
 	}
 }
 
+if (isset($_POST['resimduzenle'])) {
+	$urun_id=$_POST['urun_id'];
+
+echo $urunid;
+	$uploads_dir = '../../urunresimleri';
+
+	@$tmp_name = $_FILES['urun_foto']["tmp_name"];
+	@$name = $_FILES['urun_foto']["name"];
+
+	$benzersizsayi4=rand(20000,32000);
+	$refimgyol=substr($uploads_dir, 6)."/".$name;
+
+	//@move_uploaded_file($tmp_name, "$uploads_dir/$benzersizsayi4$name");
+
+	
+	$duzenle=$db->prepare("UPDATE urun SET
+		urun_foto=:logo
+		WHERE urun_id={$_POST['urun_id']}");
+	$update=$duzenle->execute(array(
+		'logo' => $refimgyol
+		));
+
+
+
+	if ($update) {
+
+		$resimsilunlink=$_POST['eski_yol'];
+		unlink("../../$resimsilunlink");
+
+		Header("Location:../production/urun-duzenle.php?durum=ok&urun_id=$urun_id");
+
+	} else {
+		Header("Location:../production/urun-duzenle.php?durum=no&urun_id=$urun_id");
+	}
+
+}
+
+
 ?>

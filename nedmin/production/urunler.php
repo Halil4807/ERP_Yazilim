@@ -3,7 +3,7 @@
 include 'header.php'; 
 
 //Belirli veriyi seçme işlemi
-$urunsor=$db->prepare("SELECT * FROM urun order by urun_id DESC");
+$urunsor=$db->prepare("SELECT * FROM urunler order by urun_id DESC");
 $urunsor->execute();
 
 
@@ -44,7 +44,7 @@ $urunsor->execute();
 
 
               <!--  ÜRÜN EKLEMEYİ SEVGİNUR YAPACAK 
-                <a href="urun-ekle.php"><button class="btn btn-success btn-xs"> Yeni Ekle</button></a>
+                <a href="urunler-ekle.php"><button class="btn btn-success btn-xs"> Yeni Ekle</button></a>
               -->
 
               
@@ -113,7 +113,7 @@ $urunsor->execute();
             </td>
 
 
-            <td><center><a href="urun-duzenle.php?urun_id=<?php echo $uruncek['urun_id']; ?>"><button class="btn btn-primary btn-xs">Düzenle</button></a></center></td>
+            <td><center><a href="urunler-duzenle.php?urun_id=<?php echo $uruncek['urun_id']; ?>"><button class="btn btn-primary btn-xs">Düzenle</button></a></center></td>
             <td><center><a href="../netting/islem.php?urun_id=<?php echo $uruncek['urun_id']; ?>&urunsil=ok"><button class="btn btn-danger btn-xs">Sil</button></a></center></td>
           </tr>
 

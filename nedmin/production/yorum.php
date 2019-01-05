@@ -60,7 +60,7 @@ $yorumsor->execute();
                     ));
                   $kulaniciyorumcek=$kulaniciyorumsor->fetch(PDO::FETCH_ASSOC);
 
-                  $urunyorumsor=$db->prepare("SELECT * FROM urun where urun_id=:id");
+                  $urunyorumsor=$db->prepare("SELECT * FROM urunler where urun_id=:id");
                   $urunyorumsor->execute(array(
                     'id' => $yorumcek['urun_id']
                     ));

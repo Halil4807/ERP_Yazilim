@@ -431,18 +431,18 @@ if ($_GET['kategorisil']=="ok") {
 
 if ($_GET['urunsil']=="ok") {
 	
-	$sil=$db->prepare("DELETE from urun where urun_id=:urun_id");
+	$sil=$db->prepare("DELETE from urunler where urun_id=:urun_id");
 	$kontrol=$sil->execute(array(
 		'urun_id' => $_GET['urun_id']
 		));
 
 	if ($kontrol) {
 
-		Header("Location:../production/urun.php?durum=ok");
+		Header("Location:../production/urunler.php?durum=ok");
 
 	} else {
 
-		Header("Location:../production/urun.php?durum=no");
+		Header("Location:../production/urunler.php?durum=no");
 	}
 }
 
@@ -450,12 +450,12 @@ if (isset($_POST['urunekle'])) {
 
 	$urun_seourl=seo($_POST['urun_ad']);
 
-	$kaydet=$db->prepare("INSERT INTO urun SET
+	$kaydet=$db->prepare("INSERT INTO urunler SET
 		kategori_id=:kategori_id,
 		urun_ad=:urun_ad,
 		urun_detay=:urun_detay,
 		urun_fiyat=:urun_fiyat,
-		urun_video=:urun_video,
+		urun_foto=:urun_foto,
 		urun_keyword=:urun_keyword,
 		urun_durum=:urun_durum,
 		urun_stok=:urun_stok,	
@@ -466,7 +466,7 @@ if (isset($_POST['urunekle'])) {
 		'urun_ad' => $_POST['urun_ad'],
 		'urun_detay' => $_POST['urun_detay'],
 		'urun_fiyat' => $_POST['urun_fiyat'],
-		'urun_video' => $_POST['urun_video'],
+		'urun_foto' => $_POST['urun_video'],
 		'urun_keyword' => $_POST['urun_keyword'],
 		'urun_durum' => $_POST['urun_durum'],
 		'urun_stok' => $_POST['urun_stok'],
@@ -476,11 +476,11 @@ if (isset($_POST['urunekle'])) {
 
 	if ($insert) {
 
-		Header("Location:../production/urun.php?durum=ok");
+		Header("Location:../production/urunler.php?durum=ok");
 
 	} else {
 
-		Header("Location:../production/urun.php?durum=no");
+		Header("Location:../production/urunler.php?durum=no");
 	}
 }
 
@@ -489,12 +489,11 @@ if (isset($_POST['urunduzenle'])) {
 	$urun_id=$_POST['urun_id'];
 	$urun_seourl=seo($_POST['urun_ad']);
 
-	$kaydet=$db->prepare("UPDATE urun SET
+	$kaydet=$db->prepare("UPDATE urunler SET
 		kategori_id=:kategori_id,
 		urun_ad=:urun_ad,
 		urun_detay=:urun_detay,
 		urun_fiyat=:urun_fiyat,
-		urun_video=:urun_video,
 		urun_keyword=:urun_keyword,
 		urun_durum=:urun_durum,
 		urun_onecikar=:urun_onecikar,
@@ -506,7 +505,6 @@ if (isset($_POST['urunduzenle'])) {
 		'urun_ad' => $_POST['urun_ad'],
 		'urun_detay' => $_POST['urun_detay'],
 		'urun_fiyat' => $_POST['urun_fiyat'],
-		'urun_video' => $_POST['urun_video'],
 		'urun_keyword' => $_POST['urun_keyword'],
 		'urun_durum' => $_POST['urun_durum'],
 		'urun_onecikar' => $_POST['urun_onecikar'],
@@ -517,11 +515,11 @@ if (isset($_POST['urunduzenle'])) {
 
 	if ($update) {
 
-		Header("Location:../production/urun-duzenle.php?durum=ok&urun_id=$urun_id");
+		Header("Location:../production/urunler-duzenle.php?durum=ok&urun_id=$urun_id");
 
 	} else {
 
-		Header("Location:../production/urun-duzenle.php?durum=no&urun_id=$urun_id");
+		Header("Location:../production/urunler-duzenle.php?durum=no&urun_id=$urun_id");
 	}
 }
 
@@ -544,7 +542,7 @@ if (isset($_POST['yorumekle'])) {
 		Header("Location:$gelenurl?durum=ok");
 
 	} else {
-
+//echo $_POST['urun_id'];
 		Header("Location:$gelenurl?durum=no");
 	}
 }
@@ -593,16 +591,16 @@ if (isset($_POST['siparisekle'])) {
 		
 		$urunler=$_POST['urun_id'];
 
-		foreach ($urunler as $urun ) {
+		foreach ($urunler as $urunler ) {
 			$urunsepetsor=$db->prepare("SELECT * FROM sepet WHERE kullanici_id=:kullanici_id AND urun_id=:id");
 			$urunsepetsor->execute(array(
 				'kullanici_id' => $_POST['kullanici_id'],
-				'id' => $urun
+				'id' => $urunler
 				));
 			$urunsepetcek=$urunsepetsor->fetch(PDO::FETCH_ASSOC);
-			$urunsor=$db->prepare("SELECT * FROM urun WHERE  urun_id=:id");
+			$urunsor=$db->prepare("SELECT * FROM urunler WHERE  urun_id=:id");
 			$urunsor->execute(array(
-				'id' => $urun
+				'id' => $urunler
 				));
 			$uruncek=$urunsor->fetch(PDO::FETCH_ASSOC);
 			$siparisekle=$db->prepare("INSERT INTO siparis_detay SET
@@ -613,7 +611,7 @@ if (isset($_POST['siparisekle'])) {
 				");
 			$insert=$siparisekle->execute(array(
 				'siparis_id' => $siparis_id,
-				'urun_id' => $urun,
+				'urun_id' => $urunler,
 				'urun_adet' => $urunsepetcek['urun_adet'],
 				'urun_fiyat' => $uruncek['urun_fiyat'],
 				));
@@ -720,7 +718,7 @@ echo $urunid;
 	//@move_uploaded_file($tmp_name, "$uploads_dir/$benzersizsayi4$name");
 
 	
-	$duzenle=$db->prepare("UPDATE urun SET
+	$duzenle=$db->prepare("UPDATE urunler SET
 		urun_foto=:logo
 		WHERE urun_id={$_POST['urun_id']}");
 	$update=$duzenle->execute(array(
@@ -734,10 +732,10 @@ echo $urunid;
 		$resimsilunlink=$_POST['eski_yol'];
 		unlink("../../$resimsilunlink");
 
-		Header("Location:../production/urun-duzenle.php?durum=ok&urun_id=$urun_id");
+		Header("Location:../production/urunler-duzenle.php?durum=ok&urun_id=$urun_id");
 
 	} else {
-		Header("Location:../production/urun-duzenle.php?durum=no&urun_id=$urun_id");
+		Header("Location:../production/urunler-duzenle.php?durum=no&urun_id=$urun_id");
 	}
 
 }

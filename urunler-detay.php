@@ -1,7 +1,7 @@
 ﻿<?php 
 include 'header.php';
 
-$urunsor=$db->prepare("SELECT * FROM urun where urun_seourl=:seourl AND urun_id=:urun_id");
+$urunsor=$db->prepare("SELECT * FROM urunler where urun_seourl=:seourl AND urun_id=:urun_id");
 $urunsor->execute(array(
 	'seourl' => $_GET['sef'],
 	'urun_id' => $_GET['urun_id']
@@ -176,7 +176,7 @@ $kategoricek=$kategorisor->fetch(PDO::FETCH_ASSOC);
 
 						<?php 
 						$kategori_id=$uruncek['kategori_id'];
-						$urunaltsor=$db->prepare("SELECT * FROM urun WHERE kategori_id=:kategori_id AND urun_id!=:urun_id ORDER BY rand() limit 3");
+						$urunaltsor=$db->prepare("SELECT * FROM urunler WHERE kategori_id=:kategori_id AND urun_id!=:urun_id ORDER BY rand() limit 3");
 						$urunaltsor->execute(array(
 							'kategori_id'=>$kategori_id,
 							'urun_id'=>$uruncek['urun_id']
@@ -187,7 +187,7 @@ $kategoricek=$kategorisor->fetch(PDO::FETCH_ASSOC);
 								<div class="productwrap">
 									<div class="pr-img">
 										<div class="new"></div>
-										<a href="urun-<?=seo($urunaltcek["urun_ad"]).'-'.$urunaltcek["urun_id"] ?>"><img src="<?php echo $urunaltcek['urun_foto'] ?>" width="200" height="200" alt="" class=""></a>
+										<a href="urunler-<?=seo($urunaltcek["urun_ad"]).'-'.$urunaltcek["urun_id"] ?>"><img src="<?php echo $urunaltcek['urun_foto'] ?>" width="200" height="200" alt="" class=""></a>
 
 										<div class="pricetag on-sale">
 											<div class="inner on-sale">

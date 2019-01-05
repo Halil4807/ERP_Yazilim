@@ -100,7 +100,7 @@ if(!isset($_SESSION['kullanici_mail']))
                 <li><a href="hakkimizda.php"><i class="fa fa-info"></i> Hakkımızda </a></li>
                 <li><a href="kullanici.php"><i class="fa fa-user"></i> Kullanıcılar </a></li>
                 <li><a href="kategori.php"><i class="fa fa-list"></i> Kategoriler </a></li>
-                <li><a href="urun.php"><i class="fa fa-shopping-basket"></i> Ürünler </a></li>
+                <li><a href="urunler.php"><i class="fa fa-shopping-basket"></i> Ürünler </a></li>
                 <li><a href="yorum.php"><i class="fa fa-comment"></i> Yorumlar </a></li>
                 <li><a><i class="fa fa-cogs"></i> Ayarlar <span class="fa fa-cogs"></span></a>
                   <ul class="nav child_menu">

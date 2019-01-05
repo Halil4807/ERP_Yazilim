@@ -1,7 +1,7 @@
 ﻿<?php include'header.php'; 
 
 
-$urunsor=$db->prepare("SELECT * FROM urun WHERE urun_durum=:durum AND urun_onecikar=:onecikar");
+$urunsor=$db->prepare("SELECT * FROM urunler WHERE urun_durum=:durum AND urun_onecikar=:onecikar");
 $urunsor->execute(array(
 	'durum' => 1,
 	'onecikar' => 1
@@ -35,7 +35,7 @@ $urunsor->execute(array(
 					<div class="productwrap">
 						<div class="pr-img">
 							<div class="hot"></div>
-							<a href="urun-<?=seo($uruncek["urun_ad"]).'-'.$uruncek["urun_id"] ?>"><img src="<?php echo $uruncek['urun_foto'] ?>" width="200" height="200" alt="" class=""></a>
+							<a href="urunler-<?=seo($uruncek["urun_ad"]).'-'.$uruncek["urun_id"] ?>"><img src="<?php echo $uruncek['urun_foto'] ?>" width="200" height="200" alt="" class=""></a>
 
 							<div class="pricetag on-sale">
 								<div class="inner on-sale">
@@ -66,14 +66,14 @@ $urunsor->execute(array(
 					</div>
 					<div class="row prdct"><!--Products-->
 						<?php 
-						$urunsor=$db->prepare("SELECT * FROM urun ORDER BY urun_id DESC limit 6");
+						$urunsor=$db->prepare("SELECT * FROM urunler ORDER BY urun_id DESC limit 6");
 						$urunsor->execute();
 						while($uruncek=$urunsor->fetch(PDO::FETCH_ASSOC)) {?>
 						<div class="col-md-4">
 							<div class="productwrap">
 								<div class="pr-img">
 									<div class="new"></div>
-									<a href="urun-<?=seo($uruncek["urun_ad"]).'-'.$uruncek["urun_id"] ?>"><img src="<?php echo $uruncek['urun_foto'] ?>" width="200" height="200" alt="" class=""></a>
+									<a href="urunler-<?=seo($uruncek["urun_ad"]).'-'.$uruncek["urun_id"] ?>"><img src="<?php echo $uruncek['urun_foto'] ?>" width="200" height="200" alt="" class=""></a>
 
 									<div class="pricetag on-sale">
 										<div class="inner on-sale">

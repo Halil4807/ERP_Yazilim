@@ -3,7 +3,7 @@
 include 'header.php'; 
 
 
-$urunsor=$db->prepare("SELECT * FROM urun where urun_id=:id");
+$urunsor=$db->prepare("SELECT * FROM urunler where urun_id=:id");
 $urunsor->execute(array(
   'id' => $_GET['urun_id']
   ));

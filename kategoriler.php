@@ -12,7 +12,7 @@ if(isset($_GET['sef']))
 
 	$kategoricek=$kategorisor->fetch(PDO::FETCH_ASSOC);
 	$kategori_id=$kategoricek['kategori_id'];
-	$urunsor=$db->prepare("SELECT * FROM urun WHERE kategori_id=:kategori_id ORDER BY urun_id DESC");
+	$urunsor=$db->prepare("SELECT * FROM urunler WHERE kategori_id=:kategori_id ORDER BY urun_id DESC");
 	$urunsor->execute(array(
 		'kategori_id'=>$kategori_id
 		));
@@ -21,7 +21,7 @@ if(isset($_GET['sef']))
 
 else
 {
-	$urunsor=$db->prepare("SELECT * FROM urun ORDER BY urun_id DESC");
+	$urunsor=$db->prepare("SELECT * FROM urunler ORDER BY urun_id DESC");
 	$urunsor->execute();
 }
 
@@ -44,9 +44,9 @@ else
 						<div class="pr-img">
 							<div class="new"></div>
 							<!--
-							<a href="urun-<?=seo($uruncek["urun_ad"]) ?>"><img src="images\sample-3.jpg" alt="" class="img-responsive"></a>
+							<a href="urunler-<?=seo($uruncek["urun_ad"]) ?>"><img src="images\sample-3.jpg" alt="" class="img-responsive"></a>
 						-->
-						<a href="urun-<?=seo($uruncek["urun_ad"]).'-'.$uruncek["urun_id"] ?>"><img src="<?php echo $uruncek['urun_foto'] ?>" width="200" height="200" alt="" class=""></a>
+						<a href="urunler-<?=seo($uruncek["urun_ad"]).'-'.$uruncek["urun_id"] ?>"><img src="<?php echo $uruncek['urun_foto'] ?>" width="200" height="200" alt="" class=""></a>
 
 						<div class="pricetag on-sale">
 							<div class="inner on-sale">

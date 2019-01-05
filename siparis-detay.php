@@ -43,7 +43,7 @@
 								));
 							while($siparisdetaycek=$siparisdetaysor->fetch(PDO::FETCH_ASSOC)) 
 							{ 
-								$urunsor=$db->prepare("SELECT * FROM urun WHERE urun_id=:urun_id");
+								$urunsor=$db->prepare("SELECT * FROM urunler WHERE urun_id=:urun_id");
 								$urunsor->execute(array(
 									'urun_id'=>$siparisdetaycek['urun_id']
 									));

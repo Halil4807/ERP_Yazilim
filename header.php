@@ -172,7 +172,7 @@ $sepetsor->execute(array(
 while($sepetcek=$sepetsor->fetch(PDO::FETCH_ASSOC))
 {
   $urunsepet_id=$sepetcek['urun_id'];
-  $urunsepetsor=$db->prepare("SELECT * FROM urun WHERE urun_id=:id");
+  $urunsepetsor=$db->prepare("SELECT * FROM urunler WHERE urun_id=:id");
   $urunsepetsor->execute(array(
     'id' => $urunsepet_id
     ));
@@ -194,7 +194,7 @@ while($sepetcek=$sepetsor->fetch(PDO::FETCH_ASSOC))
     while($sepetcek=$sepetsor->fetch(PDO::FETCH_ASSOC))
     {
       $urunsepet_id=$sepetcek['urun_id'];
-      $urunsepetsor=$db->prepare("SELECT * FROM urun WHERE urun_id=:id");
+      $urunsepetsor=$db->prepare("SELECT * FROM urunler WHERE urun_id=:id");
       $urunsepetsor->execute(array(
         'id' => $urunsepet_id
         ));
